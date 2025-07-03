@@ -1,25 +1,54 @@
-# Movie_Recommendation_System
-Data Analysis Key Findings
-The surprise library was successfully installed using pip.
-Loading the 'ml-100k' dataset from surprise required downgrading NumPy to version 1.26.4 due to compatibility issues with NumPy 2.0.2.
-Running package installation commands (%pip install) in separate code cells before executing code that depends on them is crucial in notebook environments.
-Data preparation for the surprise library involves building a full training set using data.build_full_trainset() and then building a test set from the resulting trainset using trainset.build_testset().
-A Singular Value Decomposition (SVD) model was successfully trained on the prepared training data.
-The trained model's performance was evaluated, yielding an RMSE of approximately 0.6770 and an MAE of approximately 0.5362 on the test set.
-Generating recommendations requires identifying items the user has not yet rated, predicting ratings for these items using the trained model, and sorting the predictions to find the top recommendations.
-Insights or Next Steps
-The RMSE and MAE values indicate the model has a reasonable level of accuracy in predicting user ratings, providing a baseline for further optimization or comparison with other algorithms.
-To make the recommendations more user-friendly, the item IDs ('1' to '1682') should be mapped back to their actual movie titles using the provided dataset's item information file.
-Analyze the scatter plot of predicted vs. actual ratings to identify potential biases in the model's predictions (e.g., consistently over- or under-predicting).
-Investigate recommended items with significantly different predicted ratings to understand the factors influencing these predictions.
-Visualizations
-Here are the visualizations of the model's performance and recommendations:
+🔍 Overview
+This project implements a simple movie/book recommendation system using collaborative filtering via the Surprise library in Python.
 
-Model Evaluation Metrics
-Model Evaluation Metrics
+Recommendation systems suggest items to users based on their preferences. This project demonstrates a user-based and item-based collaborative filtering approach to predict how a user might rate an unseen item, and recommend top items accordingly.
+⚙️ Technologies Used
+- Python 3.8+
+- Surprise Library
+- Pandas, NumPy
+- Matplotlib, Seaborn
+- Jupyter Notebook
+🗂 Dataset
+The system uses the popular MovieLens 100K dataset, containing:
+- 100,000 ratings
+- 943 users
+- 1,682 movies
 
-Top Recommendations for a User
-Top Recommendations
+Alternatively, it can work with any dataset in the format: userId, itemId, rating.
+📦 Installation
+Run the following command to install dependencies:
+pip install scikit-surprise pandas matplotlib seaborn
+🚀 How to Run
+1. Clone the repo:
+   git clone https://github.com/your-username/recommendation-system.git
+   cd recommendation-system
 
-Predicted vs. Actual Ratings
-Predicted vs Actual Ratings
+2. Run the notebook:
+   jupyter notebook Recommendation_System.ipynb
+📊 Visualizations
+1. 🔎 Model Evaluation Metrics
+We use standard evaluation metrics to assess performance:
+- Root Mean Squared Error (RMSE)
+- Mean Absolute Error (MAE)
+
+Example values:
+RMSE: 0.89
+MAE: 0.70
+
+Example code:
+from surprise import accuracy
+accuracy.rmse(predictions)
+accuracy.mae(predictions)
+2. ⭐ Top Recommendations for a User
+We generate top N recommendations for a given user based on predicted ratings.
+![Top_Recommendation](https://github.com/user-attachments/assets/de63395c-67ec-425a-a27e-aecab573bd7c)
+
+3. 📈 Predicted vs. Actual Ratings
+We compare predicted ratings against actual ratings to evaluate accuracy.
+![PredictedVsActual](https://github.com/user-attachments/assets/4fb6df0c-bf7e-49ad-a435-24529ad4f18b)
+
+💡 Key Features
+- Train/test split
+- Evaluation with RMSE & MAE
+- Recommend top N items for any user
+- Visual comparison of predicted vs actual ratings
